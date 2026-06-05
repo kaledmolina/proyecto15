@@ -3,7 +3,7 @@
 import { useEffect, useState, useCallback } from 'react'
 import { format } from 'date-fns'
 import { es } from 'date-fns/locale'
-import { ArrowLeft, Eye, Clock, User, Tag, Share2, Check, Link, MessageCircle } from 'lucide-react'
+import { ArrowLeft, Eye, Clock, Tag, Share2, Check, Link, MessageCircle } from 'lucide-react'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import ReactMarkdown from 'react-markdown'
@@ -225,27 +225,6 @@ export function ArticleDetail() {
           {/* Author & Meta */}
           <div className="mb-6 flex flex-wrap items-center justify-between gap-4 text-sm text-muted-foreground">
             <div className="flex items-center gap-4">
-              {selectedArticle.author && (
-                <div className="flex items-center gap-2">
-                  {selectedArticle.author.avatar ? (
-                    <Image
-                      src={selectedArticle.author.avatar}
-                      alt={selectedArticle.author.name}
-                      width={40}
-                      height={40}
-                      className="rounded-full"
-                    />
-                  ) : (
-                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-muted">
-                      <User className="h-5 w-5" />
-                    </div>
-                  )}
-                  <div>
-                    <p className="font-medium text-foreground">{selectedArticle.author.name}</p>
-                    <p className="text-xs text-muted-foreground">Autor</p>
-                  </div>
-                </div>
-              )}
               {publishedDate && (
                 <div className="flex items-center gap-1.5 text-sm">
                   <Clock className="h-4 w-4" />

@@ -6,6 +6,8 @@ import { Toaster as SonnerToaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "next-themes";
 import { db } from "@/lib/db";
 
+export const dynamic = 'force-dynamic';
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -38,6 +40,8 @@ export async function generateMetadata(): Promise<Metadata> {
     authors: [{ name: siteName }],
     icons: {
       icon: siteFavicon,
+      shortcut: siteFavicon,
+      apple: siteFavicon,
     },
     openGraph: {
       title: siteName,

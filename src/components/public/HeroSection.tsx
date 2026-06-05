@@ -2,7 +2,7 @@
 
 import { format } from 'date-fns'
 import { es } from 'date-fns/locale'
-import { User, Clock } from 'lucide-react'
+import { Clock } from 'lucide-react'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { Article } from '@/store/public-store'
@@ -81,24 +81,6 @@ export function HeroSection({ article, onClick }: HeroSectionProps) {
             </p>
 
             <div className="flex flex-wrap items-center gap-4 text-xs text-white/70 sm:text-sm">
-              {article.author && (
-                <div className="flex items-center gap-2">
-                  {article.author.avatar ? (
-                    <Image
-                      src={article.author.avatar}
-                      alt={article.author.name}
-                      width={32}
-                      height={32}
-                      className="rounded-full ring-2 ring-white/30"
-                    />
-                  ) : (
-                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-white/20 ring-2 ring-white/30">
-                      <User className="h-4 w-4 text-white/80" />
-                    </div>
-                  )}
-                  <span className="font-medium text-white">{article.author.name}</span>
-                </div>
-              )}
               {publishedDate && (
                 <div className="flex items-center gap-1.5">
                   <Clock className="h-3.5 w-3.5" />

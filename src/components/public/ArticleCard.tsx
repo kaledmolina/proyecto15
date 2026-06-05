@@ -2,7 +2,7 @@
 
 import { format } from 'date-fns'
 import { es } from 'date-fns/locale'
-import { Eye, User } from 'lucide-react'
+import { Eye } from 'lucide-react'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { Article } from '@/store/public-store'
@@ -71,26 +71,6 @@ export function ArticleCard({ article, onClick }: ArticleCardProps) {
 
         {/* Meta */}
         <div className="mt-auto flex items-center gap-3 border-t border-border pt-3">
-          <div className="flex items-center gap-2 text-xs text-muted-foreground">
-            {article.author ? (
-              <>
-                {article.author.avatar ? (
-                  <Image
-                    src={article.author.avatar}
-                    alt={article.author.name}
-                    width={24}
-                    height={24}
-                    className="rounded-full"
-                  />
-                ) : (
-                  <div className="flex h-6 w-6 items-center justify-center rounded-full bg-muted">
-                    <User className="h-3 w-3" />
-                  </div>
-                )}
-                <span className="font-medium text-foreground">{article.author.name}</span>
-              </>
-            ) : null}
-          </div>
           <span className="text-xs text-muted-foreground">
             {publishedDate}
           </span>

@@ -3,6 +3,8 @@ import { db } from '@/lib/db'
 import { notFound } from 'next/navigation'
 import ArticlePageClient from './ArticlePageClient'
 
+export const dynamic = 'force-dynamic'
+
 interface Props {
   params: Promise<{ id: string }>
 }
@@ -28,9 +30,27 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     ? (article.coverImage.startsWith('http') ? article.coverImage : `${baseUrl}${article.coverImage}`)
     : `${baseUrl}/api/placeholder`
 
+  // Fetch site favicon to keep it consistent
+  let siteFavicon = 'https://api.dicebear.com/9.x/initials/svg?seed=NH&backgroundColor=c0392b'
+  try {
+    const faviconSetting = await db.siteSettings.findUnique({
+      where: { key: 'site_favicon' }
+    })
+    if (faviconSetting?.value) {
+      siteFavicon = faviconSetting.value
+    }
+  } catch (error) {
+    console.error('Failed to fetch site favicon for article page:', error)
+  }
+
   return {
     title: `${article.title} | Pulso24`,
     description: article.excerpt || 'Lee este interesante artículo en Pulso24.',
+    icons: {
+      icon: siteFavicon,
+      shortcut: siteFavicon,
+      apple: siteFavicon,
+    },
     openGraph: {
       title: article.title,
       description: article.excerpt || 'Lee este interesante artículo en Pulso24.',
